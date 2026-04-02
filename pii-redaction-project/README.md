@@ -2,19 +2,22 @@
 
 📌 Project Overview
 
-This project is a cybersecurity-based middleware system designed to detect and mask Personally Identifiable Information (PII) from user inputs and AI-generated responses.
+This project is a cybersecurity-based middleware system that detects and masks Personally Identifiable Information (PII) such as names, emails, and phone numbers from both user inputs and AI-generated responses.
 
-It ensures that sensitive data such as names, emails, and phone numbers are protected before interacting with Large Language Models (LLMs).
+It ensures secure and safe interaction with AI systems by preventing exposure of sensitive data.
 
 ---
 
 🏗️ System Architecture
 
+        User (Frontend UI)
+                │
+                ▼
         ┌───────────────┐
         │   Frontend    │
-        │ (User Input)  │
+        │ HTML, CSS, JS │
         └───────┬───────┘
-                │
+                │ HTTP Request
                 ▼
         ┌───────────────┐
         │   FastAPI     │
@@ -38,28 +41,7 @@ It ensures that sensitive data such as names, emails, and phone numbers are prot
         └───────┬────────┘
                 │
                 ▼
-        ┌───────────────┐
-        │ Safe Response │
-        └───────────────┘
-
----
-
-🎯 Objectives
-
-- Detect sensitive user data (PII)
-- Mask confidential information automatically
-- Ensure safe communication with AI models
-- Validate and clean LLM responses before returning to users
-
----
-
-🧠 Features
-
-- 🔍 PII Detection (Name, Email, Phone Number)
-- 🛡️ Automatic Data Masking
-- 🔄 Input & Output Validation
-- ⚡ FastAPI Backend
-- 🔐 Privacy Protection Layer
+         Safe Response to User
 
 ---
 
@@ -69,15 +51,39 @@ pii-redaction-project
 │
 ├── backend
 │   ├── app
+│   │   ├── llm_service.py
 │   │   ├── main.py
 │   │   ├── pii_detector.py
 │   │   ├── redactor.py
-│   │   ├── llm_service.py
-│   │   ├── validator.py
-│   │   └── __init__.py
+│   │
+│   └── requirements.txt
 │
 ├── frontend
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── .gitattributes
 └── README.md
+
+---
+
+🎯 Objectives
+
+- Detect sensitive information (PII)
+- Mask confidential data before sending to AI
+- Validate AI-generated responses
+- Ensure secure communication
+
+---
+
+🧠 Features
+
+- 🔍 PII Detection (Name, Email, Phone Number)
+- 🛡️ Automatic Data Masking
+- 🔄 Input & Output Validation
+- ⚡ FastAPI Backend
+- 🌐 Interactive Frontend Interface
 
 ---
 
@@ -87,14 +93,13 @@ pii-redaction-project
 - FastAPI
 - Uvicorn
 - Presidio (PII Detection & Anonymization)
-- Pydantic
-- Requests
+- HTML, CSS, JavaScript
 
 ---
 
 🚀 Installation & Setup
 
-1️⃣ Clone the Repository
+1️⃣ Clone Repository
 
 git clone https://github.com/your-username/pii-redaction-project.git
 cd pii-redaction-project/backend
@@ -121,17 +126,25 @@ source venv/bin/activate
 
 4️⃣ Install Dependencies
 
-pip install fastapi uvicorn presidio-analyzer presidio-anonymizer pydantic requests
+pip install -r requirements.txt
 
 ---
 
-▶️ Run the Project
+▶️ Run Backend Server
 
 uvicorn app.main:app --reload
 
 Open in browser:
 
 http://127.0.0.1:8000/docs
+
+---
+
+🌐 Run Frontend
+
+Open the file in browser:
+
+frontend/index.html
 
 ---
 
@@ -149,12 +162,13 @@ My name is NAME and email is EMAIL
 
 🔄 How It Works
 
-1. User sends input request
-2. PII Detector scans for sensitive data
-3. Redactor masks detected PII
-4. Safe prompt sent to LLM
-5. Output Validator re-checks response
-6. Safe response returned to user
+1. User enters input in frontend
+2. Frontend sends request to backend API
+3. PII Detector identifies sensitive data
+4. Redactor masks sensitive information
+5. Safe prompt sent to LLM
+6. Output Validator checks response
+7. Safe output returned to user
 
 ---
 
@@ -163,7 +177,7 @@ My name is NAME and email is EMAIL
 - AI Chatbots
 - Banking Applications
 - Healthcare Systems
-- Customer Support Automation
+- Secure AI Assistants
 
 ---
 
@@ -171,11 +185,11 @@ My name is NAME and email is EMAIL
 
 - Aadhaar & Credit Card Detection
 - Integration with real LLM APIs
-- Advanced logging and monitoring
-- Frontend UI enhancements
+- Advanced UI enhancements
+- Logging & monitoring system
 
 ---
 
 ⭐ Conclusion
 
-This project enhances AI safety by preventing exposure of sensitive user information and ensuring secure communication between users and AI systems.
+This project enhances AI security by protecting sensitive user data using detection, masking, and validation techniques.
