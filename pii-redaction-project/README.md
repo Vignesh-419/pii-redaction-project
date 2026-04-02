@@ -97,15 +97,6 @@ pii-redaction-project
 
 ---
 
-🚀 Installation & Setup
-
-1️⃣ Clone Repository
-
-git clone https://github.com/your-username/pii-redaction-project.git
-cd pii-redaction-project/backend
-
----
-
 2️⃣ Create Virtual Environment
 
 python -m venv venv
