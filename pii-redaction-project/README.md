@@ -1,158 +1,198 @@
 🔐 PII Redaction & Safe Output Validator
 
-A cybersecurity-focused middleware system that detects and masks Personally Identifiable Information (PII) such as names, emails, and phone numbers before interacting with AI systems.
-
-🚨 Prevents sensitive data leaks
-🔒 Ensures user privacy
-🤖 Enables safe AI communication
-
 ---
 
 📌 Project Overview
 
-In modern AI applications, users often share sensitive information unknowingly.
-This project acts as a security layer between users and AI models, ensuring that confidential data is never exposed.
+This project is a cybersecurity-based middleware system that detects and masks Personally Identifiable Information (PII) such as names, emails, and phone numbers from both user inputs and AI-generated responses.
 
-It detects, redacts, and validates sensitive information in both:
-
-- User inputs
-- AI-generated responses
-
----
-
-⚙️ How It Works
-
-1. User sends input from frontend
-2. Backend (FastAPI) receives the request
-3. PII Detector scans for sensitive data
-4. PII Redactor masks detected information
-5. Clean input is sent to LLM
-6. Output Validator checks response
-7. Safe response is returned to user
+It ensures secure and safe interaction with AI systems by preventing the exposure of sensitive data.
 
 ---
 
 🏗️ System Architecture
 
-User (Frontend UI)
-        ↓
-Frontend (HTML, CSS, JS)
-        ↓
-FastAPI Backend
-        ↓
-PII Detector
-        ↓
-PII Redactor
-        ↓
-LLM Service
-        ↓
-Output Validator
-        ↓
-Safe Response to User
-
-🔍 Explanation
-
-- Frontend → Takes user input
-- Backend (FastAPI) → Handles API requests
-- PII Detector → Identifies sensitive data
-- PII Redactor → Masks sensitive information
-- LLM Service → Processes safe input
-- Output Validator → Ensures no leakage in response
-
----
-
-🚀 Features
-
-- 🔍 Detects PII (names, emails, phone numbers)
-- 🛡️ Masks confidential data
-- 🤖 Safe LLM interaction
-- ✅ Output validation layer
-- ⚡ FastAPI backend
-- 🌐 Simple frontend UI
-
----
-
-🧠 Use Case
-
-Example scenario:
-
-A user enters:
-
-My name is John Doe and my email is john@gmail.com
-
-System converts it to:
-
-My name is [REDACTED] and my email is [REDACTED]
-
-👉 This ensures no sensitive data reaches AI models
-
----
-
-🧱 Technology Stack
-
-- Backend: Python, FastAPI
-- Frontend: HTML, CSS, JavaScript
-- Security: Regex-based PII detection
-- AI Layer: LLM integration
+        User (Frontend UI)
+                │
+                ▼
+        ┌───────────────┐
+        │   Frontend    │
+        │ HTML, CSS, JS │
+        └───────┬───────┘
+                │ HTTP Request
+                ▼
+        ┌───────────────┐
+        │   FastAPI     │
+        │   Backend     │
+        └───────┬───────┘
+                │
+        ┌───────▼────────┐
+        │  PII Detector  │
+        └───────┬────────┘
+                │
+        ┌───────▼────────┐
+        │  PII Redactor  │
+        └───────┬────────┘
+                │
+        ┌───────▼────────┐
+        │   LLM Service  │
+        └───────┬────────┘
+                │
+        ┌───────▼────────┐
+        │ Output Validator│
+        └───────┬────────┘
+                │
+                ▼
+         Safe Response to User
 
 ---
 
 📂 Project Structure
 
-pii-redaction-project/
-│── backend/
-│   ├── main.py
-│   ├── pii_detector.py
-│   ├── redactor.py
-│   ├── llm_service.py
+pii-redaction-project
 │
-│── frontend/
+├── backend
+│   ├── app
+│   │   ├── main.py
+│   │   ├── pii_detector.py
+│   │   ├── redactor.py
+│   │   ├── llm_service.py
+│   │
+│   └── requirements.txt
+│
+├── frontend
 │   ├── index.html
 │   ├── style.css
-│   ├── script.js
+│   └── script.js
 │
-│── requirements.txt
-│── README.md
-
----
-
-🛠️ Installation
-
-1. Clone Repository
-
-git clone https://github.com/Vignesh-419/pii-redaction-project.git
-cd pii-redaction-project
-
-2. Install Dependencies
-
-pip install -r requirements.txt
-
-3. Run Backend
-
-uvicorn backend.main:app --reload
-
-4. Run Frontend
-
-Open:
-
-frontend/index.html
+├── .gitattributes
+└── README.md
 
 ---
 
 🎯 Objectives
 
-- Protect sensitive user data
-- Prevent accidental data leaks
-- Build secure AI middleware
-- Demonstrate cybersecurity concepts
+- Detect sensitive information (PII)
+- Mask confidential data before sending to AI
+- Validate AI-generated responses
+- Ensure secure communication
 
 ---
 
-📈 Future Improvements
+🧠 Features
 
-- 🔐 AI-based PII detection (NER models)
-- 🌍 Cloud deployment
-- 📊 Monitoring & logging
-- 🔍 Support more PII types
+- 🔍 PII Detection (Name, Email, Phone Number)
+- 🛡️ Automatic Data Masking
+- 🔄 Input & Output Validation
+- ⚡ FastAPI Backend
+- 🌐 Interactive Frontend Interface
+
+---
+
+⚙️ Technologies Used
+
+- Python
+- FastAPI
+- Uvicorn
+- Presidio (PII Detection & Anonymization)
+- HTML, CSS, JavaScript
+
+---
+
+🚀 Installation & Setup
+
+1️⃣ Clone Repository
+
+git clone https://github.com/Vignesh-419/pii-redaction-project.git
+cd pii-redaction-project/backend
+
+---
+
+2️⃣ Create Virtual Environment
+
+python -m venv venv
+
+---
+
+3️⃣ Activate Environment
+
+Windows:
+
+venv\Scripts\activate
+
+Mac/Linux:
+
+source venv/bin/activate
+
+---
+
+4️⃣ Install Dependencies
+
+pip install -r requirements.txt
+
+---
+
+▶️ Run Backend Server
+
+uvicorn app.main:app --reload
+
+Open in browser:
+👉 http://127.0.0.1:8000/docs
+
+---
+
+🌐 Run Frontend
+
+Open this file in your browser:
+
+frontend/index.html
+
+---
+
+🧪 Example
+
+Input:
+
+My name is Vignesh and email is vignesh@gmail.com
+
+Output:
+
+My name is [NAME] and email is [EMAIL]
+
+---
+
+🔄 How It Works
+
+1. User enters input in frontend
+2. Frontend sends request to backend API
+3. PII Detector identifies sensitive data
+4. Redactor masks sensitive information
+5. Safe prompt sent to LLM
+6. Output Validator checks response
+7. Safe output returned to user
+
+---
+
+🔐 Use Cases
+
+- AI Chatbots
+- Banking Applications
+- Healthcare Systems
+- Secure AI Assistants
+
+---
+
+📌 Future Improvements
+
+- Aadhaar & Credit Card Detection
+- Integration with real LLM APIs
+- Advanced UI enhancements
+- Logging & monitoring system
+
+---
+
+⭐ Conclusion
+
+This project enhances AI security by protecting sensitive user data using detection, masking, and validation techniques, making AI systems safer and more reliable.
 
 ---
